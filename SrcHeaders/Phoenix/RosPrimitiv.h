@@ -38,7 +38,7 @@ $Archive:   J:/sw/Tools/RosConfig/vcs/rtxheader.txt_v  $
 *                             Macro definitions                             *
 ****************************************************************************/
 
-#define ROS_PRIMITIVE_COUNT 1269
+#define ROS_PRIMITIVE_COUNT 1302
 
 /****************************************************************************
 *                   Enumerations/Type definitions/Structs                   *
@@ -294,6 +294,12 @@ typedef enum
   LU10_DEBUG_RX_2ND_INFO_FIELD=0x012E,                               //DECT Minigap Common
   FP_MAC_DEBUG_DUMMY_NOT_POSSIBLE=0x012F,                            //DECT Minigap Common
   FP_MAC_CON_RES=0x0130,                                             //DECT Minigap Common
+  PRNG_DEBUG_ENTROPY=0x0131,                                         //DECT Minigap Common
+  PRNG_DEBUG_EMPTY=0x0132,                                           //DECT Minigap Common
+  PRNG_DEBUG_REPLACE=0x0133,                                         //DECT Minigap Common
+  LU10_DEBUG_CONNECTION_CLOSED=0x0134,                               //DECT Minigap Common
+  LU10_DEBUG_RX_FU10C_ACK=0x0135,                                    //DECT Minigap Common
+  FP_ULP_DLC_LEGACY_ENC_KEY_IND=0x0136,                              //DECT Minigap Common
   FP_ADVANCED_BEARER_IND=0x0200,                                     //DECT Minigap Fp
   FP_ADVANCED_BEARER_HANDOVER_IND=0x0201,                            //DECT Minigap Fp
   FP_BEARER_QUALITY_IND=0x0202,                                      //DECT Minigap Fp
@@ -766,6 +772,9 @@ typedef enum
   FP_MNCC_ULE_MODIFY_RES_FAILURE=0x03D5,                             //DECT Minigap Fp
   FP_MNCC_ULE_IWU_INFO_IND=0x03D6,                                   //DECT Minigap Fp
   FP_MNCC_ULE_IWU_INFO_REQ=0x03D7,                                   //DECT Minigap Fp
+  FP_MAC_SET_ENROLL_BIT_SINGLE=0x03D8,                               //DECT Minigap Fp
+  FP_MNMM_ENROLL_BIT_CLEARED_IND=0x03D9,                             //DECT Minigap Fp
+  FP_ULP_DLC_RESET_REQ=0x03DA,                                       //DECT Minigap Fp
   API_FP_RESET_REQ=0x4000,                                           //ApiFpGeneral
   API_FP_RESET_IND=0x4001,                                           //ApiFpGeneral
   API_FP_GET_FW_VERSION_REQ=0x4002,                                  //ApiFpGeneral
@@ -787,8 +796,10 @@ typedef enum
   API_FP_GET_TIME_CFM=0x4085,                                        //ApiFpGeneral
   API_FP_SET_TIME_IND=0x4086,                                        //ApiFpGeneral
   API_FP_SYNC_TIME_REQ=0x4087,                                       //ApiFpGeneral
-  API_FP_FEATURES_REQ=0x40A0,                                        //ApiFpGeneral
-  API_FP_FEATURES_CFM=0x40A1,                                        //ApiFpGeneral
+  API_FP_SET_FEATURES_REQ=0x40A0,                                    //ApiFpGeneral
+  API_FP_SET_FEATURES_CFM=0x40A1,                                    //ApiFpGeneral
+  API_FP_GET_FEATURES_REQ=0x40A2,                                    //ApiFpGeneral
+  API_FP_GET_FEATURES_CFM=0x40A3,                                    //ApiFpGeneral
   API_FP_MM_GET_REGISTRATION_COUNT_REQ=0x4100,                       //ApiFpMm
   API_FP_MM_GET_REGISTRATION_COUNT_CFM=0x4101,                       //ApiFpMm
   API_FP_MM_DELETE_REGISTRATION_REQ=0x4102,                          //ApiFpMm
@@ -809,8 +820,11 @@ typedef enum
   API_FP_MM_GET_NAME_CFM=0x4111,                                     //ApiFpMm
   API_FP_MM_SET_NAME_REQ=0x4112,                                     //ApiFpMm
   API_FP_MM_SET_NAME_CFM=0x4113,                                     //ApiFpMm
-  API_FP_MM_FEATURES_REQ=0x4160,                                     //ApiFpMm
-  API_FP_MM_FEATURES_CFM=0x4161,                                     //ApiFpMm
+  API_FP_MM_REGISTRATION_MODE_DISABLED_IND=0x4114,                   //ApiFpMm
+  API_FP_MM_SET_FEATURES_REQ=0x4160,                                 //ApiFpMm
+  API_FP_MM_SET_FEATURES_CFM=0x4161,                                 //ApiFpMm
+  API_FP_MM_GET_FEATURES_REQ=0x4162,                                 //ApiFpMm
+  API_FP_MM_GET_FEATURES_CFM=0x4163,                                 //ApiFpMm
   API_FP_MM_GET_FP_CAPABILITIES_REQ=0x4170,                          //ApiFpMm
   API_FP_MM_GET_FP_CAPABILITIES_CFM=0x4171,                          //ApiFpMm
   API_FP_MM_UNITDATA_REQ=0x4180,                                     //ApiFpMm
@@ -831,8 +845,9 @@ typedef enum
   API_FP_ULE_ABORT_DATA_CFM=0x4191,                                  //ApiFpUle
   API_FP_ULE_DELETE_REGISTRATION_REQ=0x4192,                         //ApiFpUle
   API_FP_ULE_DELETE_REGISTRATION_CFM=0x4193,                         //ApiFpUle
-  API_FP_ULE_FEATURES_REQ=0x41A0,                                    //ApiFpUle
-  API_FP_ULE_FEATURES_CFM=0x41A1,                                    //ApiFpUle
+  API_FP_ULE_SET_PVC_LEGACY_MODE_REQ=0x419E,                         //ApiFpUle
+  API_FP_ULE_SET_FEATURES_REQ=0x41A0,                                //ApiFpUle
+  API_FP_ULE_SET_FEATURES_CFM=0x41A1,                                //ApiFpUle
   API_FP_ULE_PVC_CONFIG_RES=0x41A2,                                  //ApiFpUle
   API_FP_ULE_PVC_CONFIG_CFM=0x41A3,                                  //ApiFpUle
   API_FP_ULE_PVC_CONFIG_REJ=0x41A4,                                  //ApiFpUle
@@ -841,6 +856,10 @@ typedef enum
   API_FP_ULE_PVC_PENDING_RES=0x41A7,                                 //ApiFpUle
   API_FP_ULE_PVC_IWU_DATA_REQ=0x41A8,                                //ApiFpUle
   API_FP_ULE_PVC_IWU_DATA_IND=0x41A9,                                //ApiFpUle
+  API_FP_ULE_GET_FEATURES_REQ=0x41AA,                                //ApiFpUle
+  API_FP_ULE_GET_FEATURES_CFM=0x41AB,                                //ApiFpUle
+  API_FP_ULE_DATA_POLL_REQ=0x41AC,                                   //ApiFpUle
+  API_FP_ULE_DATA_POLL_CFM=0x41AD,                                   //ApiFpUle
   API_FP_INIT_PCM_REQ=0x4200,                                        //ApiFpAudio
   API_FP_INIT_PCM_CFM=0x4201,                                        //ApiFpAudio
   API_FP_SET_PCM_LOOPBACK_REQ=0x4204,                                //ApiFpAudio
@@ -861,8 +880,10 @@ typedef enum
   API_FP_AUDIO_SET_CODEC_GAIN_CFM=0x421B,                            //ApiFpAudio
   API_FP_AUDIO_ENABLE_EC_REQ=0x421C,                                 //ApiFpAudio
   API_FP_AUDIO_ENABLE_EC_CFM=0x421D,                                 //ApiFpAudio
-  API_FP_AUDIO_FEATURES_REQ=0x4220,                                  //ApiFpAudio
-  API_FP_AUDIO_FEATURES_CFM=0x4221,                                  //ApiFpAudio
+  API_FP_AUDIO_SET_FEATURES_REQ=0x4220,                              //ApiFpAudio
+  API_FP_AUDIO_SET_FEATURES_CFM=0x4221,                              //ApiFpAudio
+  API_FP_AUDIO_GET_FEATURES_REQ=0x4223,                              //ApiFpAudio
+  API_FP_AUDIO_GET_FEATURES_CFM=0x4224,                              //ApiFpAudio
   API_FP_CC_SETUP_IND=0x4400,                                        //ApiFpCc
   API_FP_CC_SETUP_RES=0x4401,                                        //ApiFpCc
   API_FP_CC_SETUP_REQ=0x4402,                                        //ApiFpCc
@@ -895,8 +916,10 @@ typedef enum
   API_FP_CC_INFO_REQ=0x442E,                                         //ApiFpCc
   API_FP_CC_DISCONNECT_AUDIO_REQ=0x442F,                             //ApiFpCc
   API_FP_CC_SELECTED_ADPCM_IND=0x4430,                               //ApiFpCc
-  API_FP_CC_FEATURES_REQ=0x4450,                                     //ApiFpCc
-  API_FP_CC_FEATURES_CFM=0x4451,                                     //ApiFpCc
+  API_FP_CC_SET_FEATURES_REQ=0x4450,                                 //ApiFpCc
+  API_FP_CC_SET_FEATURES_CFM=0x4451,                                 //ApiFpCc
+  API_FP_CC_GET_FEATURES_REQ=0x4452,                                 //ApiFpCc
+  API_FP_CC_GET_FEATURES_CFM=0x4453,                                 //ApiFpCc
   API_FP_MAC_NO_EMISSION_MODE_ENABLE_REQ=0x4600,                     //ApiFpNoEmission
   API_FP_MAC_NO_EMISSION_MODE_DISABLE_REQ=0x4601,                    //ApiFpNoEmission
   API_FP_MAC_NO_EMISSION_MODE_STOP_REQ=0x4602,                       //ApiFpNoEmission
@@ -907,12 +930,12 @@ typedef enum
   API_FP_LINUX_INIT_REQ=0x4700,                                      //ApiFpLinux
   API_FP_LINUX_INIT_DEFAULT_REQ=0x4701,                              //ApiFpLinux
   API_FP_LINUX_INIT_CFM=0x4702,                                      //ApiFpLinux
-  API_LINUX_INIT_REQ=0x4702,                                         //ApiLinux
   API_FP_LINUX_NVS_UPDATE_IND=0x4703,                                //ApiFpLinux
   API_FP_LINUX_INTERNAL_ERROR=0x4704,                                //ApiFpLinux
   API_FP_INTERNAL_SWAP_API_TO_EAI=0x470F,                            //Natalie V3 CVM
   API_LINUX_INIT_GET_SYSTEM_INFO_REQ=0x4710,                         //ApiLinux
   API_LINUX_INIT_GET_SYSTEM_INFO_CFM=0x4711,                         //ApiLinux
+  API_LINUX_INIT_REQ=0x4712,                                         //ApiLinux
   API_LINUX_INIT_CFM=0x4713,                                         //ApiLinux
   API_LINUX_NVS_UPDATE_IND=0x4714,                                   //ApiLinux
   API_LINUX_INTERNAL_ERROR_IND=0x4715,                               //ApiLinux
@@ -936,8 +959,10 @@ typedef enum
   API_FP_LLME_GET_RSSI_CFM=0x47B1,                                   //ApiFpLlme
   API_FP_LLME_GET_PERFORMANCE_TABLE_REQ=0x47B2,                      //ApiFpLlme
   API_FP_LLME_GET_PERFORMANCE_TABLE_CFM=0x47B3,                      //ApiFpLlme
-  API_FP_LLME_FEATURES_REQ=0x47B4,                                   //ApiFpLlme
-  API_FP_LLME_FEATURES_CFM=0x47B5,                                   //ApiFpLlme
+  API_FP_LLME_SET_FEATURES_REQ=0x47B4,                               //ApiFpLlme
+  API_FP_LLME_SET_FEATURES_CFM=0x47B5,                               //ApiFpLlme
+  API_FP_LLME_GET_FEATURES_REQ=0x47B6,                               //ApiFpLlme
+  API_FP_LLME_GET_FEATURES_CFM=0x47B7,                               //ApiFpLlme
   API_ISP_IDENTIFY_REQ=0x47D0,                                       //ApiIsp
   API_ISP_IDENTIFY_CFM=0x47D1,                                       //ApiIsp
   API_ISP_ERASE_REQ=0x47D2,                                          //ApiIsp
@@ -964,16 +989,20 @@ typedef enum
   API_LDS_TX_DATA_REQ=0x4821,                                        //ApiLds
   API_LDS_TX_DATA_CFM=0x4822,                                        //ApiLds
   API_LDS_RX_DATA_IND=0x4823,                                        //ApiLds
-  API_LDS_FEATURES_REQ=0x4830,                                       //ApiLds
-  API_LDS_FEATURES_CFM=0x4831,                                       //ApiLds
+  API_LDS_SET_FEATURES_REQ=0x4830,                                   //ApiLds
+  API_LDS_SET_FEATURES_CFM=0x4831,                                   //ApiLds
+  API_LDS_GET_FEATURES_REQ=0x4832,                                   //ApiLds
+  API_LDS_GET_FEATURES_CFM=0x4833,                                   //ApiLds
   API_SUOTA_SW_VERSION_INFO_REQ=0x4880,                              //ApiSuota
   API_SUOTA_SW_VERSION_INFO_IND=0x4881,                              //ApiSuota
   API_SUOTA_NEW_SW_AVAILABLE_REQ=0x4882,                             //ApiSuota
   API_SUOTA_NEW_SW_AVAILABLE_IND=0x4883,                             //ApiSuota
   API_SUOTA_NEGATIVE_ACK_REQ=0x4884,                                 //ApiSuota
   API_SUOTA_NEGATIVE_ACK_IND=0x4885,                                 //ApiSuota
-  API_SUOTA_FEATURES_REQ=0x4890,                                     //ApiSuota
-  API_SUOTA_FEATURES_CFM=0x4891,                                     //ApiSuota
+  API_SUOTA_SET_FEATURES_REQ=0x4890,                                 //ApiSuota
+  API_SUOTA_SET_FEATURES_CFM=0x4891,                                 //ApiSuota
+  API_SUOTA_GET_FEATURES_REQ=0x4892,                                 //ApiSuota
+  API_SUOTA_GET_FEATURES_CFM=0x4893,                                 //ApiSuota
   API_FP_WIFI_EXCLUDE_REQ=0x4900,                                    //ApiFpWExcl
   API_FP_WIFI_EXCLUDE_CFM=0x4901,                                    //ApiFpWExcl
   API_FWU_ENABLE_REQ=0x4F00,                                         //ApiFwu
@@ -991,8 +1020,10 @@ typedef enum
   API_FWU_STATUS_IND=0x4F0C,                                         //ApiFwu
   API_FWU_MULTI_CRC_IND=0x4F0D,                                      //ApiFwu
   API_FWU_MULTI_CRC_RES=0x4F0E,                                      //ApiFwu
-  API_FWU_FEATURES_REQ=0x4F10,                                       //ApiFwu
-  API_FWU_FEATURES_CFM=0x4F11,                                       //ApiFwu
+  API_FWU_SET_FEATURES_REQ=0x4F10,                                   //ApiFwu
+  API_FWU_SET_FEATURES_CFM=0x4F11,                                   //ApiFwu
+  API_FWU_GET_FEATURES_REQ=0x4F12,                                   //ApiFwu
+  API_FWU_GET_FEATURES_CFM=0x4F13,                                   //ApiFwu
   API_PROD_TEST_REQ=0x4FFE,                                          //ApiProdTest
   API_PROD_TEST_CFM=0x4FFF,                                          //ApiProdTest
   API_AUDIO_STOP_TONE_REQ=0x5307,                                    //ApiFpProjectAudio
@@ -1112,8 +1143,10 @@ typedef enum
   API_CLSS_IND=0x5C41,                                               //ApiClss
   API_CLSS_SET_IWU_TO_IWU_REQ=0x5C42,                                //ApiClss
   API_CLSS_SET_IWU_TO_IWU_CFM=0x5C43,                                //ApiClss
-  API_CLSS_FEATURES_REQ=0x5C48,                                      //ApiClss
-  API_CLSS_FEATURES_CFM=0x5C49,                                      //ApiClss
+  API_CLSS_SET_FEATURES_REQ=0x5C48,                                  //ApiClss
+  API_CLSS_SET_FEATURES_CFM=0x5C49,                                  //ApiClss
+  API_CLSS_GET_FEATURES_REQ=0x5C4A,                                  //ApiClss
+  API_CLSS_GET_FEATURES_CFM=0x5C4B,                                  //ApiClss
   RTX_EAP_TRACE_START_REQ=0xF000,                                    //RtxEai
   RTX_EAP_TRACE_START_CFM=0xF001,                                    //RtxEai
   RTX_EAP_TRACE_STOP_REQ=0xF002,                                     //RtxEai
