@@ -38,7 +38,7 @@ $Archive:   J:/sw/Tools/RosConfig/vcs/rtxheader.txt_v  $
 *                             Macro definitions                             *
 ****************************************************************************/
 
-#define ROS_PRIMITIVE_COUNT 1302
+#define ROS_PRIMITIVE_COUNT 1304
 
 /****************************************************************************
 *                   Enumerations/Type definitions/Structs                   *
@@ -775,6 +775,8 @@ typedef enum
   FP_MAC_SET_ENROLL_BIT_SINGLE=0x03D8,                               //DECT Minigap Fp
   FP_MNMM_ENROLL_BIT_CLEARED_IND=0x03D9,                             //DECT Minigap Fp
   FP_ULP_DLC_RESET_REQ=0x03DA,                                       //DECT Minigap Fp
+  FP_ULP_DLC_TERMINATE_REQ=0x03DB,                                   //DECT Minigap Fp
+  FP_ULP_DLC_POLL_IND=0x03DC,                                        //DECT Minigap Fp
   API_FP_RESET_REQ=0x4000,                                           //ApiFpGeneral
   API_FP_RESET_IND=0x4001,                                           //ApiFpGeneral
   API_FP_GET_FW_VERSION_REQ=0x4002,                                  //ApiFpGeneral
